@@ -30,8 +30,12 @@ def create():
     db.session.commit()
     return redirect(url_for('index'))
 
-
-
+@app.route('/delete/<id>')
+def delete(id):
+    rowdel = test.query.filter_by(id=int(id)).first()
+    rowdel.done = not(rowdel.done)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
